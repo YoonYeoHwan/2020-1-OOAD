@@ -2,9 +2,7 @@
 #include "ui.h"
 
 int main() {
-    while(1) {
-        UI ui;
-        ui.startProgram();
-    }
+    UI ui;
+    ui.startProgram();
     return 0;
 }
