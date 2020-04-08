@@ -42,6 +42,7 @@ void Log::log(int price, string product) {
     str += "원\n";
     str += "누적 ";
     str += str_;
+    str += "원";
     str += "\n\n---------------------------------\n";
 
     ofstream log("log.txt", ios::app);
