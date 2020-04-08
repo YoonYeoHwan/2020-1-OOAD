@@ -1,6 +1,7 @@
 #include "usermode.h"
 #include "payment.h"
 #include "stockmanage.h"
+#include "log.h"
 
 using namespace std;
 
@@ -22,6 +23,9 @@ void Usermode::prescription() {
     
     Payment p;
     p.payment(price);
+
+    Log l;
+    l.log(price, "처방전");
 }
 
 void Usermode::buyMedicine() {
@@ -69,10 +73,14 @@ void Usermode::buyMedicine() {
     }
     else {
         cout << "해당 상품은 품절되었습니다. 초기 화면으로 이동합니다." << endl;
+        return;
     }
 
     StockManage SM;
-    SM.stockCount(--productNumber);
+    SM.stockCount(productNumber - 1);
+
+    Log l;
+    l.log(productsPrice[productNumber - 1], productsName[productNumber - 1]);
 }
 
 void Usermode::buyMask() {
@@ -119,5 +127,8 @@ void Usermode::buyMask() {
 
         StockManage SM;
         SM.maskCount(--number);
+
+        Log l;
+        l.log(3000, "공적마스크");
     }
 }
