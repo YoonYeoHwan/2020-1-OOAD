@@ -90,7 +90,7 @@ void Log::log2(int price, string product) {
     str += to_string(curr_tm -> tm_sec);
     str += ")\n";
     str += product;
-    str += "\n";
+    str += "\n\n";
     str += "결재 금액 ";
     str += to_string(price);
     str += "원\n";
