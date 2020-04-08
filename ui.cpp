@@ -18,7 +18,9 @@ void UI::startProgram() {
     cout << "입력 : ";
     cin >> mode;
     modeSelect(mode);
-    cout << "\n\n" << endl;
+    cout << "\n\t\t   프로그램이 종료됩니다.\n" << endl;
+    cout << "------------------------------------------------------------" << endl;
+
 }
 
 void UI::modeSelect(int mode) {

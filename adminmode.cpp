@@ -23,6 +23,7 @@ void Admin::admin() {
     else {
         cout << "\n비밀번호가 일치하지 않습니다.\n" << endl;
     }
+    cout << "------------------------------------------------------------" << endl;
 }
 
 void Admin::adminMenu() {
@@ -88,8 +89,6 @@ void Admin::addNewProduct() {
         productsPrice[counter] = tmpPrice;
         productsCount[counter] = tmpCounter;
         counter++;
-        cout << counter << ". " << tmpProductsName <<  endl;
-        
     }
     fclose(file);
     productsName[counter] = productName;

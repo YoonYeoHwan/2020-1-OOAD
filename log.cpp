@@ -24,13 +24,16 @@ void Log::log(int price, string product) {
     if(curr_tm -> tm_mon + 1 < 10) str += "0";
     str += to_string(curr_tm -> tm_mon + 1);
     str += "-";
-    if(curr_tm -> tm_mday + 1 < 10) str += "0";
+    if(curr_tm -> tm_mday < 10) str += "0";
     str += to_string(curr_tm -> tm_mday);
     str += "T";
+    if(curr_tm -> tm_hour < 10) str += "0";
     str += to_string(curr_tm -> tm_hour);
     str += ":";
+    if(curr_tm -> tm_min < 10) str += "0";
     str += to_string(curr_tm -> tm_min);
     str += ":";
+    if(curr_tm -> tm_sec < 10) str += "0";
     str += to_string(curr_tm -> tm_sec);
     str += ")\n";
     str += product;
