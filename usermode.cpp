@@ -25,12 +25,12 @@ void Usermode::prescription() {
     p.payment(price);
 
     Log l;
-    l.log(price, "처방전");
+    l.log2(price, "처방전");
 }
 
 void Usermode::buyMedicine() {
     cout << "------------------------------------------------------------\n" << endl;
-    cout << "구매하실 의약품을 선택해주세요.\n" << endl;
+    cout << "구매하실 의약품과 수량을 선택해주세요.\n" << endl;
 
     string productsName[10];
     int productsPrice[10];
@@ -60,27 +60,67 @@ void Usermode::buyMedicine() {
     }
     fclose(file);
 
-    int productNumber;
-    cout << "\n------------------------------------------------------------" << endl;
-    cout << "입력 : ";
-    cin >> productNumber;
-    cout << "------------------------------------------------------------\n" << endl;
-    if(productsCount[productNumber - 1] > 0) {
-        cout << productsName[productNumber - 1] << "를 선택하셨습니다." << endl;
-        cout << "결제 화면으로 이동합니다." << endl;
-        Payment p;
-        p.payment(productsPrice[productNumber - 1]);
+    int loop = 0;
+    vector<pair<int, int>> v;
+    pair<int, int> pairTmp;
+    do {
+        cout << "\n------------------------------------------------------------" << endl;
+        cout << "상품 : ";
+        cin >> pairTmp.first;
+        cout << "수량 : ";
+        cin >> pairTmp.second;
+        v.push_back(pairTmp);
+        cout << "다른 상품도 주문하시려면 1, 아니라면 2를 선택해주세요." << endl;
+        cout << "입력 : ";
+        cin >> loop;
+        cout << "------------------------------------------------------------\n" << endl;
+    } while(loop == 1);
+    
+    int loopLength = v.size();
+
+    bool countCheck[loopLength];
+    for(int i=0; i<loopLength; i++) {
+        if(productsCount[v[i].first - 1] >= v[i].second) countCheck[i] = true;
+        else if (productsCount[v[i].first - 1] == 0){
+            countCheck[i] = false;
+            cout << "현재 " << productsName[v[i].first - 1] << "는 재고가 없습니다." << endl;
+        }
+        else {
+            countCheck[i] = true;
+            cout << "현재 " << productsName[v[i].first - 1] << "는 " << productsCount[v[i].first - 1] << "개 밖에 없습니다." << endl;
+            v[i].second = productsCount[v[i].first - 1];
+        }
     }
-    else {
-        cout << "해당 상품은 품절되었습니다. 초기 화면으로 이동합니다." << endl;
+
+    bool checkBreak = false;
+    for(int i=0; i<loopLength; i++) {
+        if(countCheck[i] == true) {
+            checkBreak = true;
+            break;
+        }
+    }
+    if(!checkBreak) {
+        cout << "주문하신 모든 상품이 재고가 없습니다. 초기 화면으로 돌아갑니다." << endl;
         return;
     }
 
+    int price = 0;
+    cout << "------------------------------------------------------------\n" << endl;
+    for(int i=0; i<loopLength; i++) {
+        cout << productsName[v[i].first - 1] << " " << v[i].second << "개 ";
+        price += productsPrice[v[i].first - 1] * v[i].second;
+    }
+    cout << "를 선택하셨습니다.\n" << endl;
+    cout << "결제 화면으로 이동합니다." << endl;
+
+    Payment p;
+    p.payment(price);
+
     StockManage SM;
-    SM.stockCount(productNumber - 1);
+    SM.stockCount(v);
 
     Log l;
-    l.log(productsPrice[productNumber - 1], productsName[productNumber - 1]);
+    l.log(price, productsName, v);
 }
 
 void Usermode::buyMask() {
@@ -129,6 +169,6 @@ void Usermode::buyMask() {
         SM.maskCount(--number);
 
         Log l;
-        l.log(3000, "공적마스크");
+        l.log2(3000, "공적마스크");
     }
 }

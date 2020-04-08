@@ -74,7 +74,7 @@ void StockManage::orderStock() {
     cout << "\n주문이 정상적으로 완료되었습니다." << endl;
 }
 
-void StockManage::stockCount(int number) {
+void StockManage::stockCount(vector<pair<int, int>> v) {
     string productsName[10];
     int productsPrice[10];
     int productsCount[10];
@@ -97,8 +97,10 @@ void StockManage::stockCount(int number) {
 
     FILE *wFile = fopen("products.txt", "w");
     for(int i=0; i<counter; i++) {
-        if(number == i) {
-            productsCount[i]--;
+        for(int j=0; j<v.size(); j++) {
+            if(i == v[j].first - 1) {
+                productsCount[i] -= v[j].second;
+            }
         }
         string strsum = productsName[i] + " " + to_string(productsPrice[i]) + " " + to_string(productsCount[i]);
         const char* ch = strsum.c_str();

@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <string>
 #include <fstream>
+#include <vector>
 
 class Usermode {
     public:
