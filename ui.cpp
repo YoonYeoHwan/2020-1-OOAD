@@ -18,7 +18,7 @@ void UI::startProgram() {
     cout << "입력 : ";
     cin >> mode;
     modeSelect(mode);
-    cout << "\n------------------------------------------------------------\n\n\n\n\n\n\n\n\n\n" << endl;
+    cout << "\n\n" << endl;
 }
 
 void UI::modeSelect(int mode) {

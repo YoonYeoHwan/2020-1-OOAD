@@ -21,5 +21,6 @@ void Receipt::receiptForm(int price) {
     cout << "----------------\n" << endl;
     cout << "     영수증\n\n" << endl;
     cout << "   금액 " << price << "원\n" << endl;
-    cout << "----------------\n" << endl;
+    cout << "----------------\n\n" << endl;
+    cout << "------------------------------------------------------------" << endl;
 }

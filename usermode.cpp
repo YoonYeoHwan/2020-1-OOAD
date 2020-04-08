@@ -112,7 +112,7 @@ void Usermode::buyMask() {
             cout << "입력 : ";
             cin >> personalID;
             cout << "------------------------------------------------------------\n" << endl;
-            if(personalID / 100 % 10 == t->tm_wday or personalID / 100 % 10 == (t->tm_wday + 5) % 10) {
+            if(personalID / 10000 % 10 == t->tm_wday || personalID / 10000 % 10 == (t->tm_wday + 5) % 10) {
                 cout << "오늘 날짜의 마스크 구매 대상자가 맞습니다.\n" << endl;
             }
             else {
