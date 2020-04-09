@@ -44,7 +44,7 @@ void Log::log(int price, string productName[], vector<pair<int,int>> v) {
         str += "개\n";
     }
     str += "\n";
-    str += "결재 금액 ";
+    str += "결제 금액 ";
     str += to_string(price);
     str += "원\n";
     str += "누적 ";
