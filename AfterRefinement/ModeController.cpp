@@ -15,7 +15,6 @@ void ModeController::adminModeSelect() {
     AdminMode adminMode;
     if(adminCheck.checkAdmin()) {
         int mode;
-        cout << "------------------------------------------------------------" << endl;
         cout << "\n원하시는 작업을 선택해주세요.\n" << endl;
         cout << "1. 매출 확인" << endl;
         cout << "2. 재고 확인" << endl;
@@ -48,7 +47,6 @@ void ModeController::userModeSelect() {
     cout << "\n------------------------------------------------------------" << endl;
     cout << "입력 : ";
     cin >> mode;
-    cout << "------------------------------------------------------------" << endl;
 
     if(mode == 1) userMode.buyWithPrescription();
     else if(mode == 2) userMode.buyMedicine();

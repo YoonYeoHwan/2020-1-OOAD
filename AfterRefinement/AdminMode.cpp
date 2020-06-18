@@ -52,12 +52,15 @@ void AdminMode::orderStock() {
     STA.StockChange(ProductNumber, count, v);
 
     cout << "\n주문이 정상적으로 완료되었습니다." << endl;
+    cout << "\n------------------------------------------------------------" << endl;
+
 }
 
 void AdminMode::orderMask() {
     StockAdaptor STA;
     STA.MaskChange();
     cout << "마스크 주문이 정상적으로 완료되었습니다." << endl;
+    cout << "\n------------------------------------------------------------" << endl;
 }
 
 void AdminMode::checkStock() {
